@@ -29,7 +29,8 @@ const styles = {
 export default class JSONObjectNode extends React.Component {
   defaultProps = {
     data: [],
-    initialExpanded: false
+    initialExpanded: false,
+    allExpanded: false
   };
   // cache store for the number of items string we display
   itemString = false;
@@ -43,7 +44,7 @@ export default class JSONObjectNode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: this.props.initialExpanded,
+      expanded: this.props.initialExpanded || this.props.allExpanded,
       createdChildNodes: false
     };
   }
@@ -61,7 +62,7 @@ export default class JSONObjectNode extends React.Component {
           if (typeof this.props.previousData !== 'undefined' && this.props.previousData !== null) {
             prevData = this.props.previousData[k];
           }
-          const node = grabNode(k, obj[k], prevData, this.props.theme, this.props.styles, this.props.getItemString);
+          const node = grabNode(k, obj[k], prevData, this.props.theme, this.props.styles, this.props.getItemString, this.props.allExpanded);
           if (node !== false) {
             childNodes.push(node);
           }

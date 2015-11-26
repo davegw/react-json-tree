@@ -11,14 +11,14 @@ import JSONDateNode from './JSONDateNode';
 import JSONUndefinedNode from './JSONUndefinedNode';
 import JSONFunctionNode from './JSONFunctionNode';
 
-export default function(key, value, prevValue, theme, styles, getItemString, initialExpanded = false) {
+export default function(key, value, prevValue, theme, styles, getItemString, allExpanded, initialExpanded = false) {
   const nodeType = objType(value);
   if (nodeType === 'Object') {
-    return <JSONObjectNode data={value} previousData={prevValue} theme={theme} initialExpanded={initialExpanded} keyName={key} key={key} styles={styles} getItemString={getItemString} />;
+    return <JSONObjectNode data={value} previousData={prevValue} theme={theme} allExpanded={allExpanded} initialExpanded={initialExpanded} keyName={key} key={key} styles={styles} getItemString={getItemString} />;
   } else if (nodeType === 'Array') {
-    return <JSONArrayNode data={value} previousData={prevValue} theme={theme} initialExpanded={initialExpanded} keyName={key} key={key} styles={styles} getItemString={getItemString} />;
+    return <JSONArrayNode data={value} previousData={prevValue} theme={theme} allExpanded={allExpanded} initialExpanded={initialExpanded} keyName={key} key={key} styles={styles} getItemString={getItemString} />;
   } else if (nodeType === 'Iterable') {
-    return <JSONIterableNode data={value} previousData={prevValue} theme={theme} initialExpanded={initialExpanded} keyName={key} key={key} styles={styles} getItemString={getItemString} />;
+    return <JSONIterableNode data={value} previousData={prevValue} theme={theme} allExpanded={allExpanded} initialExpanded={initialExpanded} keyName={key} key={key} styles={styles} getItemString={getItemString} />;
   } else if (nodeType === 'String') {
     return <JSONStringNode keyName={key} previousValue={prevValue} theme={theme} value={value} key={key} styles={styles} />;
   } else if (nodeType === 'Number') {

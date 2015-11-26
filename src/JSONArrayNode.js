@@ -30,7 +30,8 @@ const styles = {
 export default class JSONArrayNode extends React.Component {
   defaultProps = {
     data: [],
-    initialExpanded: false
+    initialExpanded: false,
+    allExpanded: false
   };
 
   // flag to see if we still need to render our child nodes
@@ -45,7 +46,7 @@ export default class JSONArrayNode extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: this.props.initialExpanded,
+      expanded: this.props.initialExpanded || this.props.allExpanded,
       createdChildNodes: false
     };
   }
@@ -61,7 +62,7 @@ export default class JSONArrayNode extends React.Component {
         if (typeof this.props.previousData !== 'undefined' && this.props.previousData !== null) {
           prevData = this.props.previousData[idx];
         }
-        const node = grabNode(idx, element, prevData, this.props.theme, this.props.styles, this.props.getItemString);
+        const node = grabNode(idx, element, prevData, this.props.theme, this.props.styles, this.props.getItemString, this.props.allExpanded);
         if (node !== false) {
           childNodes.push(node);
         }
